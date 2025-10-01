@@ -1,8 +1,22 @@
 #include "main.h"
+
+int handle_format(char format_char, va_list args)
+{
+	if (format_char == 'c')
+		return (print_char(args));
+	if (format_char == 's')
+		return (print_string(args));
+	if (format_char == '%')
+		return (write(1, "%", 1));
+
+	write(1, "%", 1);
+	return (write(1, &format_char, 1) + 1);
+}
+
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, printed = 0;
+	int i = 0, printed = 0, res;
 
 	if (format == NULL)
 		return (-1);
@@ -14,24 +28,13 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-
 			if (format[i] == '\0')
 			{
 				va_end(args);
 				return (-1);
 			}
-
-			if (format[i] == 'c')
-				printed += print_char(args);
-			else if (format[i] == 's')
-				printed += print_string(args);
-			else if (format[i] == '%')
-				printed += write(1, "%", 1);
-			else
-			{
-				printed += write(1, "%", 1);
-				printed += write(1, &format[i], 1);
-			}
+			res = handle_format(format[i], args);
+			printed += res;
 		}
 		else
 		{
