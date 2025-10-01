@@ -1,15 +1,11 @@
 #include "main.h"
-
 int _printf(const char *format, ...)
 {
 	va_list args;
 	int i = 0, printed = 0;
-
 	if (format == NULL)
 		return (-1);
-
 	va_start(args, format);
-
 	while (format[i])
 	{
 		if (format[i] == '%')
