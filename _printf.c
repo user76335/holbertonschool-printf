@@ -12,6 +12,10 @@ int handle_format(char format_char, va_list args)
 		return (print_char(args));
 	if (format_char == 's')
 		return (print_string(args));
+	
+	if (format_char == 'd' || format_char == 'i')  // <--
+        return (print_int(args));
+	
 	if (format_char == '%')
 		return (write(1, "%", 1));
 
