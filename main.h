@@ -11,6 +11,6 @@ int handle_format(char format_char, va_list args);
 int print_int(va_list args);
 int print_number(unsigned int n);
 int _putchar(char c);
-int print_binary(unsigned int n);
+int print_binary(va_list args);
 
 #endif
