@@ -52,3 +52,44 @@ On success,
 .B _printf
 returns the number of characters printed (excluding the terminating NUL used in strings).
 On output error, a negative value is returned.
+.SH ERRORS
+ If an output error occurs while writing to
+ .BR stdout ,
+ .B _printf
+ returns a negative value.
+ Behavior for unsupported or unknown conversion specifiers should match project rules; typically the unrecognized pattern is printed verbatim or treated as an error.
+.SH NOTES
+ This educational implementation:
+ .IP [bu] 2
+ does not implement flags (such as
+ .BR + , " " , 0 , - , # ),
+ field width, precision, or length modifiers (such as
+ .BR h , l , ll ).
+ .IP [bu]
+ writes to the standard output stream using
+ .BR write (2).
+ .IP [bu]
+ must follow Betty style, avoid global variables, and use no more than 5 functions per file, per project rules.
+.SH EXAMPLES
+ .nf
+ /* Characters, strings, percent /
+_printf("Char: [%c]\n", 'A'); / Char: [A] /
+_printf("String: [%s]\n", "Hello"); / String: [Hello] /
+_printf("Percent: [%%]\n"); / Percent: [%] */
+/* Signed decimals /
+_printf("Nums: d=[%d], i=[%i]\n", -42, 123); / Nums: d=[-42], i=[123] */
+/* Compare with system printf */
+ int len1 = _printf("Hi %s %d!\n", "you", 7);
+ int len2 = printf("Hi %s %d!\n", "you", 7);
+ .fi
+.SH SEE ALSO
+ .BR printf (3),
+ .BR write (2),
+ .BR va_start (3),
+ .BR va_end (3),
+ .BR va_arg (3),
+ .BR va_copy (3)
+.SH AUTHORS
+ Written by Mohammed Thikera, Holberton School.
+.SH VERSION
+ Subset implementation for holbertonschool-printf (Ubuntu 20.04, gcc -Wall -Werror -Wextra -pedantic -std=gnu89).
