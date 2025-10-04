@@ -12,10 +12,12 @@ int handle_format(char format_char, va_list args)
 		return (print_char(args));
 	if (format_char == 's')
 		return (print_string(args));
-	/*--*/
+	/*-placed-*/
 	if (format_char == 'd' || format_char == 'i')
         return (print_int(args));
-	
+	/*-placed-*/
+	if (format_char == 'b')
+		return (print_binary(args));
 	if (format_char == '%')
 		return (write(1, "%", 1));
 
