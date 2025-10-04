@@ -1,16 +1,18 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdarg.h>
-#include <unistd.h>
+#include <stddef.h> /* for NULL */
+#include <unistd.h> /* for write */
 
+/* _printf prototype */
 int _printf(const char *format, ...);
-int print_char(va_list args);
-int print_string(va_list args);
 
-int handle_format(char format_char, va_list args);
-int print_int(va_list args);
-int print_number(unsigned int n);
+/* Helper functions */
 int _putchar(char c);
+int _puts(char *str);
+int print_number(int n);
+int print_unsigned(unsigned int n, int base, int uppercase);
 int print_binary(unsigned int n);
 
-#endif
+#endif /* MAIN_H */
