@@ -38,82 +38,20 @@ int print_binary(unsigned int n)
     return count;
 }
 
-/* print_char: print a single character */
-int print_char(va_list args)
-{
-    char c = (char)va_arg(args, int);
-    return write(1, &c, 1);
-}
-
-/* print_string: print a string */
-int print_string(va_list args)
-{
-    char *str = va_arg(args, char *);
-    int len = 0;
-
-    if (!str)
-        str = "(null)";
-
-    while (str[len])
-        len++;
-
-    return write(1, str, len);
-}
-
-/* print_int: print a signed integer */
-int print_int(va_list args)
-{
-    int n = va_arg(args, int);
-    char buffer[12];
-    int i = 0, count = 0;
-    unsigned int num;
-
-    if (n == 0)
-        return write(1, "0", 1);
-
-    if (n < 0)
-    {
-        count += write(1, "-", 1);
-        num = -n;
-    }
-    else
-        num = n;
-
-    while (num > 0)
-    {
-        buffer[i++] = (num % 10) + '0';
-        num /= 10;
-    }
-
-    while (i--)
-        count += write(1, &buffer[i], 1);
-
-    return count;
-}
-
 /* handle_format: dispatch to correct print function */
 int handle_format(char format_char, va_list args)
 {
-    if (format_char == 'c')
-        return print_char(args);
-    if (format_char == 's')
-        return print_string(args);
-    if (format_char == 'd' || format_char == 'i')
-        return print_int(args);
     if (format_char == 'b')
     {
         unsigned int num = va_arg(args, unsigned int);
         return print_binary(num);
     }
-    if (format_char == '%')
-        return write(1, "%", 1);
-
-    /* Unknown specifier: print '%' and the char */
+    /* For unsupported formats, just print them literally */
     write(1, "%", 1);
     return write(1, &format_char, 1) + 1;
 }
 
-/* _printf: simplified printf supporting %b */
+/* _printf: simplified printf supporting only %b */
 int _printf(const char *format, ...)
 {
     va_list args;
@@ -151,14 +89,9 @@ int _printf(const char *format, ...)
     return printed;
 }
 
-/* main: test the _printf with %b */
+/* main: print binary of 98 only */
 int main(void)
 {
-    _printf("%b\n", 98);  /* Should print: 1100010 */
-    _printf("Char: %c\n", 'A');  /* Char: A */
-    _printf("String: %s\n", "Hello, world!");
-    _printf("Decimal: %d\n", 1234);
-    _printf("Percent sign: %%\n");
-
+    _printf("%b\n", 98);
     return 0;
 }
