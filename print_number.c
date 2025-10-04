@@ -1,50 +1,32 @@
 #include "main.h"
 
 /**
- * print_unsigned - Prints an unsigned integer recursively
- * @n: The unsigned integer to print
+ * print_number - prints an integer
+ * @n: number
  *
- * Return: Number of characters printed
+ * Return: number of characters printed
  */
-int print_unsigned(unsigned int n)
+int print_number(int n)
 {
     int count = 0;
+    char c;
 
-    if (n / 10)
-        count += print_unsigned(n / 10);
-
-    count += _putchar((n % 10) + '0');
-
-    return count;
-}
-
-/**
- * print_number - Prints a signed integer with flags + and space
- * @n: The signed integer to print
- * @flags: Flags struct with plus and space flags set
- *
- * Return: Number of characters printed
- */
-int print_number(int n, flags_t flags)
-{
-    int count = 0;
-    unsigned int num;
-
-    if (n >= 0)
-    {
-        if (flags.plus)
-            count += _putchar('+');
-        else if (flags.space)
-            count += _putchar(' ');
-        num = n;
-    }
-    else
+    if (n < 0)
     {
         count += _putchar('-');
-        num = -n;
+        if (n == -2147483648)
+        {
+            count += print_string("2147483648");
+            return (count);
+        }
+        n = -n;
     }
 
-    count += print_unsigned(num);
+    if (n / 10)
+        count += print_number(n / 10);
 
-    return count;
+    c = (n % 10) + '0';
+    count += _putchar(c);
+
+    return (count);
 }
