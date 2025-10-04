@@ -2,6 +2,8 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <stddef.h> /* for NULL */
+#include <unistd.h> /* for write */
 
 /* _printf prototype */
 int _printf(const char *format, ...);
