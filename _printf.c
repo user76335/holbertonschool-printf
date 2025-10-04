@@ -65,35 +65,44 @@ int _printf(const char *format, ...)
 	return (printed);
 }
 
-
 /**
- * print_binary - Prints the binary representation of an unsigned int
- * @args: va_list containing the unsigned int to print
+ * _printf - a simplified printf function supporting %b
+ * @format: format string
  *
- * Return: Number of characters printed
+ * Return: number of characters printed
  */
-int print_binary(va_list args)
+int _printf(const char *format, ...)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	int count = 0;
-	unsigned int mask = 1 << (sizeof(unsigned int) * 8 - 1);
-	int started = 0;
+    va_list args;
+    int i = 0, count = 0;
 
-	if (num == 0)
-		return (write(1, "0", 1));
+    va_start(args, format);
 
-	while (mask > 0)
-	{
-		if (num & mask)
-		{
-			started = 1;
-			count += write(1, "1", 1);
-		}
-		else if (started)
-		{
-			count += write(1, "0", 1);
-		}
-		mask >>= 1;
-	}
-	return (count);
+    while (format && format[i])
+    {
+        if (format[i] == '%' && format[i + 1] == 'b')
+        {
+            unsigned int num = va_arg(args, unsigned int);
+            count += print_binary(num);
+            i += 2; // skip '%b'
+            continue;
+        }
+        else if (format[i] == '%' && format[i + 1] == '%')
+        {
+            putchar('%');
+            count++;
+            i += 2;
+            continue;
+        }
+        else
+        {
+            putchar(format[i]);
+            count++;
+            i++;
+        }
+    }
+
+    va_end(args);
+
+    return count;
 }
