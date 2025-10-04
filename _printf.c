@@ -2,19 +2,6 @@
 #include <stdarg.h>
 
 /**
- * struct flags_s - structure to hold flag info
- * @plus: Plus flag (+)
- * @space: Space flag (' ')
- * @hash: Hash flag (#)
- */
-typedef struct flags_s
-{
-    int plus;
-    int space;
-    int hash;
-} flags_t;
-
-/**
  * parse_flags - Parses flag characters and sets the flags struct
  * @format: Pointer to the format string
  * @flags: Pointer to flags struct to fill
