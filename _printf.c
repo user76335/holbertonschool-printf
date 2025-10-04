@@ -17,7 +17,9 @@ int handle_format(char format_char, va_list args)
         return (print_int(args));
 	/*-placed-*/
 	if (format_char == 'b')
-		return (print_binary(args));
+{
+    unsigned int num = va_arg(args, unsigned int);
+    return print_binary(num);
 	if (format_char == '%')
 		return (write(1, "%", 1));
 
