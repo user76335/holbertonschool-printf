@@ -162,3 +162,14 @@ int main(void)
 
     return 0;
 }
+
+int main(void)
+{
+    _printf("Char: %c\n", 'A');
+    _printf("String: %s\n", "Hello");
+    _printf("Hex lowercase: %#x\n", 255);
+    _printf("Binary: %b\n", 5);
+    _printf("Address: %p\n", main);
+    return 0;
+}
+
