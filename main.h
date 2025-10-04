@@ -8,7 +8,7 @@
 /* _printf prototype */
 int _printf(const char *format, ...);
 
-/* Helper functions */
+/* Helper function prototypes */
 int _putchar(char c);
 int _puts(char *str);
 int print_number(int n);

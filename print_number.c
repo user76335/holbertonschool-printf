@@ -1,17 +1,23 @@
 #include "main.h"
 
-/**
- * print_number - Prints an unsigned integer recursively
- * @n: Number to print
- * Return: Number of characters printed
- */
-int print_number(unsigned int n)
+/* Print signed integer */
+int print_number(int n)
 {
-    int count = 0;
+    int len = 0;
+    unsigned int num;
 
-    if (n / 10)
-        count += print_number(n / 10);
+    if (n < 0)
+    {
+        len += _putchar('-');
+        num = -n;
+    }
+    else
+        num = n;
 
-    count += _putchar((n % 10) + '0');
-    return (count);
+    if (num / 10)
+        len += print_number(num / 10);
+    len += _putchar(num % 10 + '0');
+
+    return len;
 }
+
