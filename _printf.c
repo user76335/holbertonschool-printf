@@ -17,8 +17,10 @@ int handle_format(char format_char, va_list args)
         return (print_int(args));
 	/*-placed-*/
 	if (format_char == 'b')
-		return (print_binary(args));
-
+{
+    unsigned int num = va_arg(args, unsigned int);
+    return print_binary(num);
+}
 	/* Unknown specifier: print '%' and the character */
 	write(1, "%", 1);
 	return (write(1, &format_char, 1) + 1);
