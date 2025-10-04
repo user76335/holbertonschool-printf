@@ -1,0 +1,54 @@
+.TH _PRINTF 3 "October 4, 2025" "Holberton School" "Library Functions Manual"
+.SH NAME
+_printf - formatted output conversion
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.BI "int _printf(const char *" format ", ...);"
+.SH DESCRIPTION
+.B _printf
+produces output according to a format string and a variable number of arguments.
+The
+.I format
+string is composed of ordinary characters (which are copied directly to the output)
+and conversion specifiers introduced by the percent character (%).
+
+This project implementation is a subset of the standard
+.BR printf (3)
+and, per the project constraints, does
+.B not
+handle flags, field width, precision, or length modifiers.
+
+.SS Supported conversion specifiers
+.TP
+.B %c
+Print a single character. The corresponding argument is an
+.B int
+(promoted char).
+.TP
+.B %s
+Print a NUL-terminated string. The corresponding argument is a
+.B char *
+pointer. If the pointer is
+.BR NULL ,
+the behavior should mimic
+.BR printf (3)
+for this edge case (commonly
+.QR "(null)" ).
+.TP
+.B %%
+Print a literal percent character. No argument is consumed.
+.TP
+.B %d
+Print a signed decimal integer. The corresponding argument is an
+.B int
+and is printed in base 10 with a leading minus sign for negatives.
+.TP
+.B %i
+Identical to
+.BR %d .
+.SH RETURN VALUE
+On success,
+.B _printf
+returns the number of characters printed (excluding the terminating NUL used in strings).
+On output error, a negative value is returned.

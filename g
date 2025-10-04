@@ -1,4 +1,4 @@
 #!/bin/bash
 git add .
-git commit -m "printf"
+git commit -m "update printf"
 git push
