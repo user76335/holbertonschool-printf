@@ -1,20 +1,20 @@
 #include "main.h"
 
 /**
- * print_unsigned - prints an unsigned integer
+ * print_octal - prints an unsigned integer in octal
  * @n: number to print
  *
  * Return: number of characters printed
  */
-int print_unsigned(unsigned int n)
+int print_octal(unsigned int n)
 {
     int count = 0;
     char c;
 
-    if (n / 10)
-        count += print_unsigned(n / 10);
+    if (n / 8)
+        count += print_octal(n / 8);
 
-    c = (n % 10) + '0';
+    c = (n % 8) + '0';
     count += _putchar(c);
 
     return (count);

@@ -3,7 +3,7 @@
 /**
  * print_hex - prints an unsigned int in hexadecimal
  * @n: number
- * @uppercase: 1 for uppercase letters, 0 for lowercase
+ * @uppercase: 1 for uppercase, 0 for lowercase
  *
  * Return: number of characters printed
  */
@@ -21,3 +21,4 @@ int print_hex(unsigned int n, int uppercase)
 
     return (count);
 }
+
