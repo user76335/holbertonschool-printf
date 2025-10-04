@@ -40,14 +40,17 @@ int _printf(const char *format, ...)
                 case 'u':
                     count += print_unsigned(va_arg(args, unsigned int));
                     break;
-                case 'b':
-                    count += print_binary(va_arg(args, unsigned int));
+                case 'o':
+                    count += print_octal(va_arg(args, unsigned int));
                     break;
                 case 'x':
                     count += print_hex(va_arg(args, unsigned int), 0);
                     break;
                 case 'X':
                     count += print_hex(va_arg(args, unsigned int), 1);
+                    break;
+                case 'b':
+                    count += print_binary(va_arg(args, unsigned int));
                     break;
                 case 'p':
                     count += print_address(va_arg(args, void *));
@@ -67,4 +70,3 @@ int _printf(const char *format, ...)
     va_end(args);
     return (count);
 }
-
