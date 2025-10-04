@@ -1,8 +1,12 @@
 #include "main.h"
 
-/* Print a single character */
-int _putchar(char c)
+/**
+ * print_char - prints a character
+ * @c: character
+ *
+ * Return: 1
+ */
+int print_char(char c)
 {
-    return write(1, &c, 1);
+    return (_putchar(c));
 }
-

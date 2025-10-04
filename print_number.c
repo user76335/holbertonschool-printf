@@ -1,23 +1,32 @@
 #include "main.h"
 
-/* Print signed integer */
+/**
+ * print_number - prints an integer
+ * @n: number
+ *
+ * Return: number of characters printed
+ */
 int print_number(int n)
 {
-    int len = 0;
-    unsigned int num;
+    int count = 0;
+    char c;
 
     if (n < 0)
     {
-        len += _putchar('-');
-        num = -n;
+        count += _putchar('-');
+        if (n == -2147483648)
+        {
+            count += print_string("2147483648");
+            return (count);
+        }
+        n = -n;
     }
-    else
-        num = n;
 
-    if (num / 10)
-        len += print_number(num / 10);
-    len += _putchar(num % 10 + '0');
+    if (n / 10)
+        count += print_number(n / 10);
 
-    return len;
+    c = (n % 10) + '0';
+    count += _putchar(c);
+
+    return (count);
 }
-

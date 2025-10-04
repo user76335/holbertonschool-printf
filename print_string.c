@@ -1,37 +1,24 @@
 #include "main.h"
 
 /**
- * print_binary - prints an unsigned int in binary
- * @n: the unsigned int to print
+ * print_string - prints a string
+ * @s: string
+ *
  * Return: number of characters printed
  */
-int print_binary(unsigned int n)
+int print_string(char *s)
 {
-    int i, count = 0;
-    int started = 0;
-    unsigned int mask = 1 << 31;
+    int len = 0;
 
-    for (i = 0; i < 32; i++)
+    if (!s)
+        s = "(null)";
+
+    while (*s)
     {
-        if (n & mask)
-        {
-            _putchar('1');
-            count++;
-            started = 1;
-        }
-        else if (started)
-        {
-            _putchar('0');
-            count++;
-        }
-        mask >>= 1;
+        _putchar(*s);
+        len++;
+        s++;
     }
 
-    if (!started)
-    {
-        _putchar('0');
-        count++;
-    }
-
-    return count;
-
+    return (len);
+}

@@ -1,23 +1,22 @@
 #include "main.h"
 
-/* Print unsigned integer in a given base */
-int print_unsigned(unsigned int n, int base, int uppercase)
+/**
+ * print_unsigned - prints unsigned int
+ * @n: number
+ *
+ * Return: number of characters printed
+ */
+int print_unsigned(unsigned int n)
 {
-    char buffer[32];
-    char *digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
-    int i = 0, len = 0;
+    int count = 0;
+    char c;
 
-    if (n == 0)
-        return _putchar('0');
+    if (n / 10)
+        count += print_unsigned(n / 10);
 
-    while (n)
-    {
-        buffer[i++] = digits[n % base];
-        n /= base;
-    }
+    c = (n % 10) + '0';
+    count += _putchar(c);
 
-    while (i--)
-        len += _putchar(buffer[i]);
-
-    return len;
+    return (count);
 }
+
